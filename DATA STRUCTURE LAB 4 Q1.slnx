@@ -1,1 +1,74 @@
-﻿
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Mobile {
+    string brand;
+    int units;
+    float price;
+    Mobile* next;
+
+    // Constructor: Makes creating a new mobile much shorter!
+    Mobile(string b, int u, float p) : brand(b), units(u), price(p), next(nullptr) {}
+};
+
+Mobile* head = nullptr;
+
+// 1. Add Mobile
+
+void addMobile(string brand, int units, float price) {
+    Mobile* newNode = new Mobile(brand, units, price);
+    if (!head) {
+        head = newNode;
+        return;
+    }
+    Mobile* temp = head;
+    while (temp->next) temp = temp->next;
+    temp->next = newNode;
+}
+
+// 2. Delete Mobile
+
+void deleteMobile(string brand) {
+    if (!head) return;
+
+    // Case 1: Delete the first mobile
+    if (head->brand == brand) {
+        Mobile* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    // Case 2: Delete from middle or end
+    Mobile* temp = head;
+    while (temp->next && temp->next->brand != brand) temp = temp->next;
+
+    if (temp->next) {
+        Mobile* toDelete = temp->next;
+        temp->next = temp->next->next;
+        delete toDelete;
+    }
+}
+
+// 3. Display All
+void display() {
+    for (Mobile* t = head; t != nullptr; t = t->next)
+        cout << t->brand << " | Units: " << t->units << " | Price: " << t->price << endl;
+}
+
+int main() {
+    addMobile("Samsung", 10, 50000);
+    addMobile("Apple", 5, 120000);
+    addMobile("Oppo", 20, 30000);
+
+    cout << "--- Inventory ---\n";
+    display();
+
+    deleteMobile("Apple");
+
+    cout << "\n--- After Deleting Apple ---\n";
+    display();
+
+    return 0;
+}﻿
