@@ -1,1 +1,81 @@
-﻿
+﻿#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Structure for a User (Node)
+struct User {
+    string name;
+    int age;
+    string email;
+    User* next;
+
+    // Constructor to make creating new users easier
+    User(string n, int a, string e) : name(n), age(a), email(e), next(nullptr) {}
+};
+
+User* head = nullptr; // Global head pointer
+
+// 1. Add Profile (at the end)
+void addProfile(string name, int age, string email) {
+    User* newUser = new User(name, age, email);
+    if (!head) {
+        head = newUser;
+        return;
+    }
+    User* temp = head;
+    while (temp->next) temp = temp->next;
+    temp->next = newUser;
+}
+
+// 2. Display All Profiles
+
+void showProfiles() {
+    if (!head) { cout << "List is empty.\n"; return; }
+    User* temp = head;
+    while (temp) {
+        cout << "[" << temp->name << " | " << temp->age << " | " << temp->email << "] -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+
+// 3. Delete Profile
+
+void deleteProfile(string name) {
+    if (!head) return;
+
+    if (head->name == name) {
+        User* toDelete = head;
+        head = head->next;
+        delete toDelete;
+        return;
+    }
+
+    User* temp = head;
+    while (temp->next && temp->next->name != name) temp = temp->next;
+
+    if (temp->next) {
+        User* toDelete = temp->next;
+        temp->next = temp->next->next;
+        delete toDelete;
+    }
+    else {
+        cout << "User not found.\n";
+    }
+}
+
+int main() {
+    addProfile("Ali", 20, "ali@gmail.com");
+    addProfile("Sara", 22, "sara@yahoo.com");
+    addProfile("Zayn", 25, "zayn@mail.com");
+
+    cout << "Current Profiles:\n";
+    showProfiles();
+
+    cout << "\nDeleting Ali...\n";
+    deleteProfile("Ali");
+
+    showProfiles();
+    return 0;
+}
