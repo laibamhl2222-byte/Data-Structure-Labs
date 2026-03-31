@@ -1,93 +1,65 @@
 #include <iostream>
 using namespace std;
 
-struct Applicant {
-    int id;
-    float height;
-    float weight;
-    float eyesight;
-    string status;
-    Applicant* next;
-    Applicant* prev;
-};
+#define SIZE 5
+int queue[SIZE], front = -1, rear = -1;
 
-class ApplicantQueue {
-private:
-    Applicant* front;
-    Applicant* rear;
-public:
-    ApplicantQueue() {
-        front = rear = NULL;
+void enqueue(int value) {
+    if (rear == SIZE - 1) {
+        cout << "Queue Overflow!\n";
+    } else {
+        if (front == -1) front = 0;
+        queue[++rear] = value;
+        cout << value << " inserted into queue.\n";
     }
+}
 
-    bool isEmpty() {
-        return front == NULL;
+void dequeue() {
+    if (front == -1 || front > rear) {
+        cout << "Queue Underflow!\n";
+    } else {
+        cout << queue[front] << " removed from queue.\n";
+        front++;
     }
+}
 
-    void enqueue(int id, float h, float w, float e, string s) {
-        Applicant* temp = new Applicant;
-        temp->id = id;
-        temp->height = h;
-        temp->weight = w;
-        temp->eyesight = e;
-        temp->status = s;
-        temp->next = NULL;
-        temp->prev = rear;
-
-        if (rear != NULL) rear->next = temp;
-        rear = temp;
-        if (front == NULL) front = temp;
-    }
-
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Queue empty\n";
-            return;
-        }
-        Applicant* temp = front;
-        cout << "Applicant " << temp->id << " leaves queue.\n";
-        front = front->next;
-        if (front != NULL) front->prev = NULL;
-        else rear = NULL;
-        delete temp;
-    }
-
-    void removeSecond() {
-        if (front == NULL || front->next == NULL) {
-            cout << "No second applicant to remove.\n";
-            return;
-        }
-        Applicant* second = front->next;
-        cout << "Applicant " << second->id << " had urgency and left.\n";
-        front->next = second->next;
-        if (second->next != NULL) second->next->prev = front;
-        else rear = front;
-        delete second;
-    }
-
-    void display() {
-        Applicant* temp = front;
-        cout << "Queue: ";
-        while (temp != NULL) {
-            cout << temp->id << " ";
-            temp = temp->next;
+void display() {
+    if (front == -1 || front > rear) {
+        cout << "Queue is empty.\n";
+    } else {
+        cout << "Queue elements: ";
+        for (int i = front; i <= rear; i++) {
+            cout << queue[i] << " ";
         }
         cout << endl;
     }
-};
+}
 
 int main() {
-    ApplicantQueue q;
-    q.enqueue(1, 5.8, 70, 6, "waiting");
-    q.enqueue(2, 5.7, 65, 6, "waiting");
-    q.enqueue(3, 6.0, 80, 6, "waiting");
-    q.enqueue(4, 5.6, 60, 6, "waiting");
-
-    q.display();
-    q.removeSecond();
-    q.display();
-    q.dequeue();
-    q.display();
-
+    int choice, value;
+    do {
+        cout << "\nMenu:\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+        switch (choice) {
+            case 1:
+                cout << "Enter value: ";
+                cin >> value;
+                enqueue(value);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+    } while (choice != 4);
     return 0;
 }
+
