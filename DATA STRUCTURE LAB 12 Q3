@@ -1,0 +1,54 @@
+Task 3: Insert into BST
+
+ Step 1: Insert 45
+- Tree is empty, so 45 becomes the root.
+
+   45
+
+
+ Step 2: Insert 25
+- Compare with root (45).  
+- 25 < 45 → goes to the left.
+
+
+     45
+    /
+   25
+
+ Step 3: Insert 65
+- Compare with root (45).  
+- 65 > 45 → goes to the right.
+
+     45
+    /  \
+   25   65
+
+
+ Step 4: Insert 10
+- Compare with root (45).  
+- 10 < 45 → go left to 25.  
+- 10 < 25 → goes to the left of 25.
+
+     45
+    /  \
+   25   65
+  /
+ 10
+
+Step 5: Insert 30
+- Compare with root (45).  
+- 30 < 45 → go left to 25.  
+- 30 > 25 → goes to the right of 25.
+
+     45
+    /  \
+   25   65
+  / \
+ 10  30
+
+Final BST after all insertions:`
+     45
+    /  \
+   25   65
+  / \
+ 10  30
