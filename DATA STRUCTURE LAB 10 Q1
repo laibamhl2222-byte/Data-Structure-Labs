@@ -1,0 +1,34 @@
+Step-by-step trace:
+
+1. enQueue(10)
+   - Array: [10, -, -, -, -]
+   - Front = 0, Rear = 0
+
+2. enQueue(20)
+   - Array: [10, 20, -, -, -]
+   - Front = 0, Rear = 1
+
+3. enQueue(30)
+   - Array: [10, 20, 30, -, -]
+   - Front = 0, Rear = 2
+
+4. deQueue() → removes 10
+   - Array: [-, 20, 30, -, -]
+   - Front = 1, Rear = 2
+
+5. enQueue(40)
+   - Array: [-, 20, 30, 40, -]
+   - Front = 1, Rear = 3
+
+6. enQueue(50)
+   - Array: [-, 20, 30, 40, 50]
+   - Front = 1, Rear = 4
+
+7. enQueue(60) → wraps around (circular queue)
+   - Array: [60, 20, 30, 40, 50]
+   - Front = 1, Rear = 0
+
+Final State:
+- Front value = 20  
+- Rear value = 60  
+- Array = [60, 20, 30, 40, 50]
