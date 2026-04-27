@@ -1,0 +1,19 @@
+Queue Conditions
+Queue Full Condition
+
+In a circular queue:
+
+(𝑟𝑒𝑎𝑟 + 1)mod
+ 
+𝑠𝑖𝑧𝑒 = 𝑓𝑟𝑜𝑛𝑡
+Meaning: If the next position of rear is equal to front, the queue is full.
+
+In words: The queue is full when there’s no space left to insert a new element because the rear pointer is about to overlap the front pointer.
+
+Queue Empty Condition
+
+Condition:
+𝑓𝑟𝑜𝑛𝑡= − 1 or 𝑓𝑟𝑜𝑛𝑡 = 𝑟𝑒𝑎𝑟+1
+(depending on implementation)
+
+In words: The queue is empty when there are no elements to remove, i.e., the front pointer doesn’t point to any valid element.
