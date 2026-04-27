@@ -1,0 +1,39 @@
+ Tree Structure
+
+        A
+      /   \
+     B     C
+    / \     \
+   D   E     F
+
+
+ Root Node
+- Definition: The root is the very first/top node of the tree, with no parent.  
+A is the root node.
+
+Leaf Nodes
+- Definition: Leaf nodes are nodes with no children (endpoints of the tree).  
+  - D (no children)  
+  - E (no children)  
+  - F (no children)  
+- Leaf nodes = {D, E, F}
+
+ Degree of Node B
+- Definition: Degree of a node = number of children that node has.  
+ Node B has two children (D and E).  
+- Degree(B)= 2
+
+ Height of Tree
+- Definition: Height = longest path from root to a leaf (counting levels).  
+- Path examples:  
+  - A → B → D (3 levels)  
+  - A → B → E (3 levels)  
+  - A → C → F (3 levels)  
+- Height = 3
+
+ Level of Node E
+- Definition: Level = distance from root, starting with root at level 1.  
+  - Root A → Level 1  
+  - Node B → Level 2  
+  - Node E → Level 3  
+-Level(E) = 3
