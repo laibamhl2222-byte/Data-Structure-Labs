@@ -1,0 +1,36 @@
+ Tree Structure
+
+        6
+      /   \
+     3     10
+    / \
+   2   5
+
+1. Inorder Traversal (L → N → R)
+- Start at root (6), go left → subtree rooted at 3.
+- From 3, go left → node 2 (leaf).  
+- Visit 2 → back to 3 → visit 3.  
+- Go right → node 5.  
+- Visit 5 → back to root 6 → visit 6.  
+- Finally, go right → node 10 → visit 10.
+Sequence: 2, 3, 5, 6, 10
+
+
+2. Preorder Traversal (N → L → R)
+- Start at root → visit 6.  
+- Go left → visit 3.  
+- From 3, go left → visit 2.  
+- Back to 3, go right → visit 5.  
+- Back to root, go right → visit 10.
+Sequence: 6, 3, 2, 5, 10
+
+
+3. Postorder Traversal (L → R → N)
+- Start at root (6), go left → subtree rooted at 3.  
+- From 3, go left → visit 2.  
+- From 3, go right → visit 5.  
+- Back to 3 → visit 3.  
+- Back to root, go right → visit 10.  
+- Finally, visit root → 6.
+
+Sequence: 2, 5, 3, 10, 6
