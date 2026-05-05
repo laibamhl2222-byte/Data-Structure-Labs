@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+
+int linearSearch(int arr[], int size, int target) {
+    if(size == 0)
+        return -1;
+
+    if(arr[size - 1] == target)
+        return size - 1;
+
+    return linearSearch(arr, size - 1, target);
+}
+
+int main() {
+    int arr[] = {5, 10, 15, 20};
+    int result = linearSearch(arr, 4, 15);
+
+    if(result != -1)
+        cout << "Element found at index: " << result;
+    else
+        cout << "Element not found";
+
+    return 0;
+}
